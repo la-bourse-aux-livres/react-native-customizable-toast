@@ -1,12 +1,12 @@
-import React, { memo, type PropsWithChildren } from "react";
+import { memo, type PropsWithChildren } from "react";
 import Animated, {
   FadeIn,
   FadeOut,
-  Layout,
+  LinearTransition,
   useAnimatedStyle,
 } from "react-native-reanimated";
-import { useToast } from "../../hooks/useToast";
 import { useLayout } from "../../hooks/useLayout";
+import { useToast } from "../../hooks/useToast";
 import type { ToastContainerProps } from "../../typings";
 
 export const ToastContainer = memo(
@@ -15,7 +15,7 @@ export const ToastContainer = memo(
     children,
     entering = FadeIn,
     exiting = FadeOut,
-    layout = Layout.springify(),
+    layout = LinearTransition.springify(),
     gestureValues,
     containerLayout,
     itemStyle,

@@ -1,8 +1,8 @@
-import React, { createRef } from "react";
-import { ToasterBase } from "./ToasterBase";
+import { createRef } from "react";
 import type { ToastProperties } from "./components/Toast/typings";
-import type { ToasterMethods } from "./typings";
 import { defaultStyleWorklet } from "./components/ToastContainer/defaultStyleWorklet";
+import { ToasterBase } from "./ToasterBase";
+import type { ToasterMethods } from "./typings";
 
 export const ToasterRef = createRef<ToasterMethods<ToastProperties>>();
 

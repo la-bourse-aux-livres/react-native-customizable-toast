@@ -64,3 +64,6 @@ android/keystores/debug.keystore
 lib/
 
 .env
+
+example
+example/pnpm-lock.yaml

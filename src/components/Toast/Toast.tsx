@@ -1,11 +1,11 @@
-import React, { useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
 
 import { Pressable } from "react-native-gesture-handler";
-import type { ToastProperties } from "../Toast/typings";
+import { useAutoHide } from "../../hooks/useAutoHide";
 import { useToast } from "../../hooks/useToast";
 import { Swipeable } from "../Swipeable";
-import { useAutoHide } from "../../hooks/useAutoHide";
+import type { ToastProperties } from "../Toast/typings";
 
 const ToastColors = {
   default: "#6d6d6d",
@@ -39,7 +39,7 @@ export const Toast = () => {
   const _onPress = useCallback(() => {
     if (onPress) onPress();
     if (dismissible) hide();
-  }, [onPress, dismissible]);
+  }, [onPress, dismissible, hide]);
 
   return useMemo(
     () => (
@@ -69,7 +69,7 @@ export const Toast = () => {
       </Swipeable>
     ),
 
-    [loading],
+    [loading, _onPress, hide, type, dismissible, text],
   );
 };
 

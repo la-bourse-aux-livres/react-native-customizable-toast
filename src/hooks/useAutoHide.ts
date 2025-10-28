@@ -11,8 +11,11 @@ export const useAutoHide = () => {
         hide();
       }, timeout);
     }
+
     return () => {
-      if (n) clearTimeout(n);
+      if (n) {
+        clearTimeout(n);
+      }
     };
   }, []);
 };

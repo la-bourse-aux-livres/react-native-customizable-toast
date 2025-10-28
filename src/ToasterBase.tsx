@@ -1,25 +1,19 @@
-import React, {
-  createElement,
-  useImperativeHandle,
-  useState,
-  type Ref,
-} from "react";
-import { StyleSheet, View, SafeAreaView } from "react-native";
+import { createElement, type Ref, useImperativeHandle, useState } from "react";
+import { SafeAreaView, StyleSheet, View } from "react-native";
+import { GestureDetector } from "react-native-gesture-handler";
+import Animated from "react-native-reanimated";
 import { Toast as ToastComponent } from "./components/Toast";
 import { ToastContainer } from "./components/ToastContainer";
+import { defaultStyleWorklet } from "./components/ToastContainer/defaultStyleWorklet";
 import { ToastContext } from "./contexts/ToastContext";
-import Animated from "react-native-reanimated";
-import { GestureDetector } from "react-native-gesture-handler";
-
+import { useContainerSwipeGesture } from "./hooks/useContainerSwipeGesture";
+import { useLayout } from "./hooks/useLayout";
 import type {
   Toast,
   ToasterMethods,
   ToasterProps,
   ToastOptions,
 } from "./typings";
-import { useLayout } from "./hooks/useLayout";
-import { useContainerSwipeGesture } from "./hooks/useContainerSwipeGesture";
-import { defaultStyleWorklet } from "./components/ToastContainer/defaultStyleWorklet";
 
 export const ToasterBase = <T extends object>({
   render = ToastComponent,

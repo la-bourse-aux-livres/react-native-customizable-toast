@@ -1,6 +1,10 @@
+import type React from "react";
 import type { ViewProps } from "react-native";
-import type { useAnimatedStyle } from "react-native-reanimated";
-import type Animated from "react-native-reanimated";
+import type {
+  AnimatedProps,
+  SharedValue,
+  useAnimatedStyle,
+} from "react-native-reanimated";
 
 export type Toast = {
   id: string;
@@ -21,21 +25,20 @@ type OnSwipeEdge<T> = {
   filter: (fn: (value: T, index: number) => void) => void;
 };
 
-type LayoutAnimationProps = Pick<
-  Animated.AnimateProps<ViewProps>,
-  "layout" | "entering" | "exiting"
+type LayoutAnimationProps = Partial<
+  Pick<AnimatedProps<ViewProps>, "layout" | "entering" | "exiting">
 >;
 
 type Translation = {
-  translationY: Animated.SharedValue<number>;
-  translationX: Animated.SharedValue<number>;
+  translationY: SharedValue<number>;
+  translationX: SharedValue<number>;
 };
 
 type Layout = {
-  x: Animated.SharedValue<number>;
-  y: Animated.SharedValue<number>;
-  width: Animated.SharedValue<number>;
-  height: Animated.SharedValue<number>;
+  x: SharedValue<number>;
+  y: SharedValue<number>;
+  width: SharedValue<number>;
+  height: SharedValue<number>;
 };
 
 export type ToastItemProps = {
@@ -72,4 +75,5 @@ export interface ToastContainerProps extends LayoutAnimationProps {
   containerLayout: Layout;
   itemStyle?: (value: ToastItemProps) => ReturnType<typeof useAnimatedStyle>;
   displayFromBottom?: boolean;
+  children: React.ReactNode | SharedValue<React.ReactNode>;
 }

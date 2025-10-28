@@ -1,7 +1,8 @@
+import { useMemo } from "react";
 import { Dimensions } from "react-native";
 import { Gesture } from "react-native-gesture-handler";
-import { runOnJS, useSharedValue, withTiming } from "react-native-reanimated";
-import { useMemo } from "react";
+import { useSharedValue, withTiming } from "react-native-reanimated";
+import { scheduleOnRN } from "react-native-worklets";
 
 const SCREEN_HEIGHT = Dimensions.get("screen").height;
 export const useContainerSwipeGesture = ({
@@ -33,9 +34,9 @@ export const useContainerSwipeGesture = ({
       })
       .onEnd((event) => {
         if (displayFromBottom && event.absoluteY > SCREEN_HEIGHT - 100) {
-          runOnJS(onFinish)();
+          scheduleOnRN(onFinish);
         } else if (!displayFromBottom && event.absoluteY < 100) {
-          runOnJS(onFinish)();
+          scheduleOnRN(onFinish);
         }
         translationY.value = withTiming(0);
       });

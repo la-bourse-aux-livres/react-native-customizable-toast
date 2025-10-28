@@ -1,22 +1,18 @@
-import React, { memo, type PropsWithChildren } from "react";
+import { memo } from "react";
 import { Dimensions } from "react-native";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
-  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { scheduleOnRN } from "react-native-worklets";
 import type { SwipeableProps } from "./typings";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 export const Swipeable = memo(
-  ({
-    onSwipe,
-    disabled = false,
-    children,
-  }: PropsWithChildren<SwipeableProps>) => {
+  ({ onSwipe, disabled = false, children }: SwipeableProps) => {
     const translateX = useSharedValue(0);
 
     const panGesture = Gesture.Pan()
@@ -34,7 +30,7 @@ export const Swipeable = memo(
         const position = willDisappear ? direction * 800 : 0;
         translateX.value = withTiming(position, undefined, (finished) => {
           if (finished && willDisappear) {
-            runOnJS(onSwipe)();
+            scheduleOnRN(onSwipe);
           }
         });
       })

@@ -1,6 +1,10 @@
-import { Extrapolate, interpolate } from "react-native-reanimated";
+import { Extrapolation, interpolate } from "react-native-reanimated";
 import type { ToastItemProps } from "../../typings";
-import { clamp } from "../../helpers/clamp";
+
+const clamp = (value: number, lowerBound: number, upperBound: number) => {
+  "worklet";
+  return Math.min(Math.max(lowerBound, value), upperBound);
+};
 
 export const defaultStyleWorklet = ({
   itemLayout: { y },
@@ -22,7 +26,7 @@ export const defaultStyleWorklet = ({
               -translationY.value - y.value,
               [0, 100],
               [1, 0],
-              Extrapolate.CLAMP,
+              Extrapolation.CLAMP,
             ),
       },
       displayFromBottom ? { rotate: "-180deg" } : { rotate: "0deg" },
