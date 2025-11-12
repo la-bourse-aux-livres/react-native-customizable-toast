@@ -1,19 +1,18 @@
 import { Swipeable } from "./components/Swipeable";
-import { defaultStyleWorklet } from "./components/ToastContainer/defaultStyleWorklet";
+import { defaultStyleWorklet } from "./defaultStyleWorklet";
 import { useAutoHide } from "./hooks/useAutoHide";
 import { useToast } from "./hooks/useToast";
-import { Toaster, ToasterHelper } from "./Toaster";
-import { ToasterBase } from "./ToasterBase";
+import { SimpleToaster, ToasterHelper } from "./SimpleToaster";
 import type { ToasterMethods, ToastItemProps } from "./typings";
 
+export { default } from "./Toaster";
 export {
-  ToasterBase,
-  Toaster,
-  ToasterHelper,
-  useToast,
-  useAutoHide,
-  Swipeable,
-  defaultStyleWorklet,
+	defaultStyleWorklet,
+	SimpleToaster,
+	Swipeable,
+	ToasterHelper,
+	useToast,
+	useAutoHide,
 };
 
 export type { ToasterMethods, ToastItemProps };
