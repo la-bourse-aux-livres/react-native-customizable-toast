@@ -310,9 +310,6 @@ Dont mind FPS again :(
 
 <img width="200" src="https://imgur.com/YaPGokU.gif" />
 
-
-You can find full implementation in [CustomToaster](https://github.com/kubilaysalih/react-native-customizable-toast/blob/main/example/src/CustomToaster/CustomToaster.tsx)
-
 ## TODO
 - [ ] Better README.md or docs
 

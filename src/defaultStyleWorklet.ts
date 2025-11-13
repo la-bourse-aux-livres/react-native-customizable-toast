@@ -7,29 +7,29 @@ import type { ToastItemProps } from "./typings";
 // };
 
 export const defaultStyleWorklet = ({
-	itemLayout: { y },
-	gesture: { translationY },
-	properties: { loading },
-	displayFromBottom,
+  itemLayout: { y },
+  gesture: { translationY },
+  properties: { loading },
+  displayFromBottom,
 }: ToastItemProps) => {
-	"worklet";
+  "worklet";
 
-	return {
-		transform: [
-			{
-				translateY: withClamp({ min: -y.value, max: 0 }, translationY.value),
-			},
-			{
-				scale: loading
-					? 1
-					: interpolate(
-							-translationY.value - y.value,
-							[0, 100],
-							[1, 0],
-							Extrapolation.CLAMP,
-						),
-			},
-			displayFromBottom ? { rotate: "-180deg" } : { rotate: "0deg" },
-		],
-	};
+  return {
+    transform: [
+      {
+        translateY: withClamp({ min: -y.value, max: 0 }, translationY.value),
+      },
+      {
+        scale: loading
+          ? 1
+          : interpolate(
+              -translationY.value - y.value,
+              [0, 100],
+              [1, 0],
+              Extrapolation.CLAMP,
+            ),
+      },
+      displayFromBottom ? { rotate: "-180deg" } : { rotate: "0deg" },
+    ],
+  };
 };

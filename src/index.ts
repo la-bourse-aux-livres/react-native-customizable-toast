@@ -7,12 +7,12 @@ import type { ToasterMethods, ToastItemProps } from "./typings";
 
 export { default } from "./Toaster";
 export {
-	defaultStyleWorklet,
-	SimpleToaster,
-	Swipeable,
-	ToasterHelper,
-	useToast,
-	useAutoHide,
+  defaultStyleWorklet,
+  SimpleToaster,
+  Swipeable,
+  ToasterHelper,
+  useToast,
+  useAutoHide,
 };
 
 export type { ToasterMethods, ToastItemProps };

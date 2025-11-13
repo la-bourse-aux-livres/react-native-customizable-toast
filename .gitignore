@@ -40,10 +40,6 @@ project.xcworkspace
 local.properties
 android.iml
 
-# Cocoapods
-#
-example/ios/Pods
-
 # node.js
 #
 node_modules/
@@ -64,6 +60,3 @@ android/keystores/debug.keystore
 lib/
 
 .env
-
-example
-example/pnpm-lock.yaml

@@ -1,9 +1,9 @@
 import { memo } from "react";
 import Animated, {
-	FadeIn,
-	FadeOut,
-	LinearTransition,
-	useAnimatedStyle,
+  FadeIn,
+  FadeOut,
+  LinearTransition,
+  useAnimatedStyle,
 } from "react-native-reanimated";
 
 import { useLayout } from "../hooks/useLayout";
@@ -11,50 +11,50 @@ import { useToast } from "../hooks/useToast";
 import type { ToastContainerProps } from "../typings";
 
 export const ToastContainer = memo(
-	({
-		index,
-		children,
-		entering = FadeIn,
-		exiting = FadeOut,
-		layout = LinearTransition.springify(),
-		gestureValues,
-		containerLayout,
-		itemStyle,
-		displayFromBottom = false,
-	}: ToastContainerProps) => {
-		const { y, x, height, width, onLayout } = useLayout();
-		const toast = useToast();
+  ({
+    index,
+    children,
+    entering = FadeIn,
+    exiting = FadeOut,
+    layout = LinearTransition.springify(),
+    gestureValues,
+    containerLayout,
+    itemStyle,
+    displayFromBottom = false,
+  }: ToastContainerProps) => {
+    const { y, x, height, width, onLayout } = useLayout();
+    const toast = useToast();
 
-		const styles = useAnimatedStyle(() => {
-			return itemStyle
-				? itemStyle({
-						gesture: gestureValues,
-						itemLayout: {
-							x,
-							y,
-							height,
-							width,
-						},
-						containerLayout: containerLayout,
-						properties: {
-							...toast,
-							index,
-						},
-						displayFromBottom,
-					})
-				: {};
-		});
+    const styles = useAnimatedStyle(() => {
+      return itemStyle
+        ? itemStyle({
+            gesture: gestureValues,
+            itemLayout: {
+              x,
+              y,
+              height,
+              width,
+            },
+            containerLayout: containerLayout,
+            properties: {
+              ...toast,
+              index,
+            },
+            displayFromBottom,
+          })
+        : {};
+    });
 
-		return (
-			<Animated.View
-				style={[styles]}
-				entering={entering}
-				exiting={exiting}
-				layout={layout}
-				onLayout={onLayout}
-			>
-				{children}
-			</Animated.View>
-		);
-	},
+    return (
+      <Animated.View
+        style={[styles]}
+        entering={entering}
+        exiting={exiting}
+        layout={layout}
+        onLayout={onLayout}
+      >
+        {children}
+      </Animated.View>
+    );
+  },
 );

@@ -1,4 +1,4 @@
-import { createElement, type Ref, useImperativeHandle, useState } from "react";
+import { createElement, useImperativeHandle, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import Animated from "react-native-reanimated";
@@ -10,121 +10,116 @@ import { ToastContext } from "./contexts/ToastContext";
 import { defaultStyleWorklet } from "./defaultStyleWorklet";
 import { useContainerSwipeGesture } from "./hooks/useContainerSwipeGesture";
 import { useLayout } from "./hooks/useLayout";
-import type {
-	Toast,
-	ToasterMethods,
-	ToasterProps,
-	ToastOptions,
-} from "./typings";
+import type { Toast, ToasterProps, ToastOptions } from "./typings";
 
 const Toaster = <T extends object>({
-	render = ToastComponent,
-	onSwipeEdge,
-	itemStyle = defaultStyleWorklet,
-	displayFromBottom = false,
-	useSafeArea,
-	ref,
-	...rest
-}: ToasterProps<T> & { ref: Ref<ToasterMethods<T>> }) => {
-	const [toasts, setToasts] = useState<Toast[]>([]);
-	const { height, x, y, width, onLayout } = useLayout();
-	const WrapperComponent = useSafeArea ? SafeAreaView : View;
+  render = ToastComponent,
+  onSwipeEdge,
+  itemStyle = defaultStyleWorklet,
+  displayFromBottom = false,
+  useSafeArea,
+  ref,
+  ...rest
+}: ToasterProps<T>) => {
+  const [toasts, setToasts] = useState<Toast[]>([]);
+  const { height, x, y, width, onLayout } = useLayout();
+  const WrapperComponent = useSafeArea ? SafeAreaView : View;
 
-	useImperativeHandle(ref, () => ({
-		show: _show,
-		hide: _hide,
-		update: _update,
-		filter: _filter,
-	}));
+  useImperativeHandle(ref, () => ({
+    show: _show,
+    hide: _hide,
+    update: _update,
+    filter: _filter,
+  }));
 
-	const _show = (options?: ToastOptions) => {
-		const id =
-			Date.now().toString() + (Math.random() + 1).toString(36).substring(10); // Strengthen Collision detection
-		setToasts((prev) => [...prev, { ...options, id }]);
-		return id;
-	};
+  const _show = (options?: ToastOptions) => {
+    const id =
+      Date.now().toString() + (Math.random() + 1).toString(36).substring(10); // Strengthen Collision detection
+    setToasts((prev) => [...prev, { ...options, id }]);
+    return id;
+  };
 
-	const _update = (id: string, options?: Partial<ToastOptions>) => {
-		setToasts((prev) =>
-			prev.map((e) => (e.id === id ? { ...e, ...options } : e)),
-		);
-	};
+  const _update = (id: string, options?: Partial<ToastOptions>) => {
+    setToasts((prev) =>
+      prev.map((e) => (e.id === id ? { ...e, ...options } : e)),
+    );
+  };
 
-	const _hide = (id: string) => {
-		setToasts((prev) => prev.filter((e) => e.id !== id));
-	};
+  const _hide = (id: string) => {
+    setToasts((prev) => prev.filter((e) => e.id !== id));
+  };
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const _filter = (fn: (value: any, index: number) => void) => {
-		setToasts((prev) => prev.filter(fn));
-	};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const _filter = (fn: (value: any, index: number) => void) => {
+    setToasts((prev) => prev.filter(fn));
+  };
 
-	const _hideAll = () => {
-		setToasts([]);
-	};
+  const _hideAll = () => {
+    setToasts([]);
+  };
 
-	const { panGesture, translationY, translationX } = useContainerSwipeGesture({
-		displayFromBottom,
-		activeOffsetY: [-10, 10],
-		onFinish: () => {
-			if (onSwipeEdge) {
-				onSwipeEdge({ filter: _filter, hide: _hide, hideAll: _hideAll });
-				return;
-			}
-			_hideAll();
-		},
-	});
+  const { panGesture, translationY, translationX } = useContainerSwipeGesture({
+    displayFromBottom,
+    activeOffsetY: [-10, 10],
+    onFinish: () => {
+      if (onSwipeEdge) {
+        onSwipeEdge({ filter: _filter, hide: _hide, hideAll: _hideAll });
+        return;
+      }
+      _hideAll();
+    },
+  });
 
-	return (
-		<WrapperComponent
-			style={[
-				StyleSheet.absoluteFillObject,
-				{
-					transform: [
-						displayFromBottom ? { rotate: "180deg" } : { rotate: "0deg" },
-					],
-				},
-			]}
-			pointerEvents="box-none"
-		>
-			<GestureDetector gesture={panGesture}>
-				<Animated.View onLayout={onLayout}>
-					{[...toasts].reverse().map((e, index) => {
-						const hide = () => _hide(e.id);
-						return (
-							<ToastContext.Provider
-								key={e.id}
-								value={{
-									index,
-									hide,
-									...e,
-								}}
-							>
-								<ToastContainer
-									{...rest}
-									index={index}
-									gestureValues={{
-										translationY,
-										translationX,
-									}}
-									containerLayout={{
-										height,
-										x,
-										y,
-										width,
-									}}
-									itemStyle={itemStyle}
-									displayFromBottom={displayFromBottom}
-								>
-									{createElement(render)}
-								</ToastContainer>
-							</ToastContext.Provider>
-						);
-					})}
-				</Animated.View>
-			</GestureDetector>
-		</WrapperComponent>
-	);
+  return (
+    <WrapperComponent
+      style={[
+        StyleSheet.absoluteFillObject,
+        {
+          transform: [
+            displayFromBottom ? { rotate: "180deg" } : { rotate: "0deg" },
+          ],
+        },
+      ]}
+      pointerEvents="box-none"
+    >
+      <GestureDetector gesture={panGesture}>
+        <Animated.View onLayout={onLayout}>
+          {[...toasts].reverse().map((e, index) => {
+            const hide = () => _hide(e.id);
+            return (
+              <ToastContext.Provider
+                key={e.id}
+                value={{
+                  index,
+                  hide,
+                  ...e,
+                }}
+              >
+                <ToastContainer
+                  {...rest}
+                  index={index}
+                  gestureValues={{
+                    translationY,
+                    translationX,
+                  }}
+                  containerLayout={{
+                    height,
+                    x,
+                    y,
+                    width,
+                  }}
+                  itemStyle={itemStyle}
+                  displayFromBottom={displayFromBottom}
+                >
+                  {createElement(render)}
+                </ToastContainer>
+              </ToastContext.Provider>
+            );
+          })}
+        </Animated.View>
+      </GestureDetector>
+    </WrapperComponent>
+  );
 };
 
 export default Toaster;
