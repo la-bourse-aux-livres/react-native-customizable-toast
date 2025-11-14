@@ -1,6 +1,6 @@
 {
 	"name": "react-native-customizable-toast",
-	"version": "0.2.1",
+	"version": "1.0.0",
 	"description": "yet another toast library based on reanimated 2 layout animations",
 	"main": "lib/commonjs/index",
 	"module": "lib/module/index",
@@ -31,16 +31,11 @@
 		"ios",
 		"android"
 	],
-	"repository": "https://github.com/kubilaysalih/react-native-customizable-toast",
-	"author": "kubilaysalih <kubilay@kubilay.io> (https://github.com/kubilaysalih)",
+	"author": "Kubilay Salih <kubilay@kubilay.io>",
+	"contributors": [
+		"Jean-Baptiste Crestot <jbcrestot@gmail.com>"
+	],
 	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/kubilaysalih/react-native-customizable-toast/issues"
-	},
-	"homepage": "https://github.com/kubilaysalih/react-native-customizable-toast#readme",
-	"publishConfig": {
-		"registry": "https://registry.npmjs.org/"
-	},
 	"devDependencies": {
 		"@commitlint/cli": "^20.1.0",
 		"@commitlint/config-conventional": "^20.0.0",
