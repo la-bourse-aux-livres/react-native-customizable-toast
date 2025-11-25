@@ -1,6 +1,6 @@
 {
 	"name": "react-native-customizable-toast",
-	"version": "1.0.2",
+	"version": "1.0.4",
 	"description": "yet another toast library based on reanimated 4 layout animations",
 	"main": "lib/module/index",
 	"module": "lib/module/index",
