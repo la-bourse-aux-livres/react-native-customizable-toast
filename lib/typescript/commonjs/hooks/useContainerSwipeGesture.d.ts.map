@@ -1,0 +1,1 @@
+{"version":3,"file":"useContainerSwipeGesture.d.ts","sourceRoot":"","sources":["../../../../src/hooks/useContainerSwipeGesture.ts"],"names":[],"mappings":"AAOA,eAAO,MAAM,wBAAwB,GAAI,iDAItC;IACD,QAAQ,IAAI,IAAI,CAAC;IACjB,aAAa,CAAC,EACV,MAAM,GACN,CAAC,kBAAkB,EAAE,MAAM,EAAE,gBAAgB,EAAE,MAAM,CAAC,CAAC;IAC3D,iBAAiB,CAAC,EAAE,OAAO,CAAC;CAC7B;;;;CAoCA,CAAC"}
