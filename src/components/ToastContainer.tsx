@@ -1,12 +1,11 @@
 import { memo } from "react";
 import Animated, {
-	clamp,
-	Extrapolation,
-	FadeIn,
-	FadeOut,
-	interpolate,
-	LinearTransition,
-	useAnimatedStyle,
+  Extrapolation,
+  FadeIn,
+  FadeOut,
+  interpolate,
+  LinearTransition,
+  useAnimatedStyle
 } from "react-native-reanimated";
 
 import { useLayout } from "../hooks/useLayout";
