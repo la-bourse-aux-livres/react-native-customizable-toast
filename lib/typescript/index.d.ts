@@ -1,9 +1,9 @@
 import { Swipeable } from "./components/Swipeable";
+import { useToast } from "./contexts/ToastContext";
 import { useAutoHide } from "./hooks/useAutoHide";
-import { useToast } from "./hooks/useToast";
-import { SimpleToaster, ToasterHelper } from "./SimpleToaster";
-import type { ToasterMethods, ToastItemProps } from "./typings";
-export { default } from "./Toaster";
-export { SimpleToaster, Swipeable, ToasterHelper, useToast, useAutoHide };
-export type { ToasterMethods, ToastItemProps };
+import type { ToastManagerProps, ToastMethods } from "./typings";
+export { Swipeable, useAutoHide, useToast };
+export declare const Toast: ToastMethods;
+declare const _default: ({ useSafeArea, displayFromBottom, ToastComponent, }: ToastManagerProps) => import("react").FunctionComponentElement<ToastManagerProps>;
+export default _default;
 //# sourceMappingURL=index.d.ts.map

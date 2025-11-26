@@ -1,6 +1,6 @@
 {
 	"name": "react-native-customizable-toast",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "yet another toast library based on reanimated 4 layout animations",
 	"main": "lib/module/index",
 	"module": "lib/module/index",
@@ -63,7 +63,8 @@
 		"react-native-worklets": "^0.6.1",
 		"release-it": "^19.0.6",
 		"typescript": "~5.9.3",
-		"typescript-eslint": "^8.48.0"
+		"typescript-eslint": "^8.48.0",
+		"uuid": "^13.0.0"
 	},
 	"peerDependencies": {
 		"react": "^19.1.0",

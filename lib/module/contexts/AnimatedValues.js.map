@@ -1,1 +1,0 @@
-{"version":3,"names":["createContext","AnimatedValuesContext"],"sourceRoot":"../../../src","sources":["contexts/AnimatedValues.ts"],"mappings":";;AAAA,SAASA,aAAa,QAAQ,OAAO;;AAErC;AACA,OAAO,MAAMC,qBAAqB,gBAAGD,aAAa,CAAM,CAAC,CAAC,CAAC","ignoreList":[]}

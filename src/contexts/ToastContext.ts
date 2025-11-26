@@ -1,4 +1,8 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
+import type { Toast } from "src/typings";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const ToastContext = createContext<any>({});
+export const ToastContext = createContext<Toast[]>([]);
+
+export const useToast = () => {
+	return useContext<Toast[]>(ToastContext);
+};
