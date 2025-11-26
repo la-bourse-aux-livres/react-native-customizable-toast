@@ -25,14 +25,16 @@ export const ToastContainer = memo(
 		const { y, onLayout } = useLayout();
 		const { loading } = useToast();
 
+		console.log("before", loading);
+
 		const animatedStyle = useAnimatedStyle(() => {
 			return {
 				transform: [
+					// {
+					// 	translateY: clamp(translationY.value, -y.value, 0),
+					// },
 					{
-						translateY: clamp(translationY.value, -y.value, 0),
-					},
-					{
-						scale: Boolean(loading)
+						scale: loading
 							? 1
 							: interpolate(
 									-translationY.value - y.value,
